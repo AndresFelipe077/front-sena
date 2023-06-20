@@ -1,0 +1,18 @@
+<div class="slider" #slickElement class="card-training-program">
+    <div class="training-program" *ngFor="let proyecto of proyectos">
+        <div class="active-tokens">
+            <p>56</p>
+            <p>Fichas activas</p>
+        </div>
+        <div class="description">
+            <p>Nombre Programa</p>
+            <p>ID {{proyecto.id}}</p>
+            <p>{{proyecto.tiempoEstimado}} horas estimadas</p>
+            <p>{{proyecto.numeroTotalRaps}} Raps esperados</p>
+        </div>
+        <div class="actions">
+            <button (click)="actualizar(proyecto)"><img src="../../../assets/icons/reload.svg"></button>
+            <button><img src="../../../assets/icons/delete.svg"></button>
+        </div>
+    </div>
+</div>

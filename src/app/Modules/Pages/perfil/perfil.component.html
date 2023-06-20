@@ -1,0 +1,71 @@
+<section class="seccion-perfil-usuario">
+    <div class="perfil-usuario-header">
+        <div class="perfil-usuario-portada">
+            <div class="perfil-usuario-avatar">
+                <img src={{persona?.rutaFotoUrl}} alt="img-avatar">
+                <button type="button" class="boton-avatar">
+                    <i class="far fa-image"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="perfil-usuario-body">
+        <div class="perfil-usuario-bio">
+            <h3 class="titulo">{{persona?.nombre1}} {{persona?.nombre2}} {{persona?.apellido1}} {{persona?.apellido2}}
+            </h3>
+            <p class="texto">{{persona?.perfil}}</p>
+        </div>
+        <div class="perfil-usuario-footer">
+            <ul class="lista-datos">
+                <li>
+                    <label>Fecha de nacimiento</label>
+                    <span>{{persona?.fechaNac}}</span>
+                </li>
+                <li>
+                    <label>Direccion</label>
+                    <span>{{persona?.direccion}}</span>
+                </li>
+                <li>
+                    <label>Correo</label>
+                    <span>{{persona?.email}}</span>
+                </li>
+                <li>
+                    <label>Fijo</label>
+                    <span>{{persona?.telefonoFijo}}</span>
+                </li>
+                <li>
+                    <label>Celular</label>
+                    <span>{{persona?.celular}}</span>
+                </li>
+            </ul>
+            <ul class="lista-datos">
+                <li>
+                    <label>Ciudad de nacimineto</label>
+                    <samp>{{persona?.ciudadNac}}</samp>
+                </li>
+                <li>
+                    <label>Ciudad natal</label>
+                    <span>{{persona?.ciudad}}</span>
+                </li>
+                <li>
+                    <label>Tipo de identificacion</label>
+                    <span>{{persona?.tipoIdentificacion}}</span>
+                </li>
+                <li>
+                    <label>Ciudad actual</label>
+                    <span>{{persona?.ciudadUbicacion}}</span>
+                </li>
+            </ul>
+            <ul class="lista-datos">
+                <li>
+                    <label>Rol</label>
+                    <span>{{persona?.asignacionRolPersona}}</span>
+                </li>
+                <li>
+                    <label>Contrato</label>
+                    <span>{{persona?.contrato}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+<div class="bloque-slick-information">
+    <div class="content-slick-information">
+        <div class="slick-wrapper">
+            <div class="slider" #slickElement>
+                <div class="slide-item" *ngFor="let porcentajeNumerico of porcentajeNumericos; index as i">
+                    <div class="porcentajes" style="--porcentaje: {{porcentajeNumerico}}">
+                        <div class="content">
+                            <p>Cod 2559637</p>
+                            <p>Etapa Lectiva</p>
+                            <p>14 aprendices</p>
+                            <p>{{porcentajeNumerico}}%</p>
+                        </div>
+                        <svg width="230px" height="230px">
+                            <circle r="100px" cx="50%" cy="50%" pathLength="100" [style.stroke]="colores[i]">
+                            </circle>
+                            <circle r="100px" cx="50%" cy="50%" pathLength="100" [style.stroke]="colores[i]">
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="actions">
+                        <button (click)="openModalUpdate1(proyecto)"><img src="../../../assets/icons/reload.svg"></button>
+                        <button (click)="deleteProyecto(proyecto.id!)"><img src="../../../assets/icons/delete.svg"></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="button-añadir">
+            <a><button (click)="openModalCreate()">Añadir</button></a>
+            <a><button (click)="openModalCreate1()">Añadir1</button></a>
+        </div>
+    </div>
+</div>
+
+

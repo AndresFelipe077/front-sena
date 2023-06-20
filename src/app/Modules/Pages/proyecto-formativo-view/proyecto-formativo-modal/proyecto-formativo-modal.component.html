@@ -1,0 +1,123 @@
+<div mat-dialog-title>
+    <strong>Registrar Proyecto</strong>
+</div>
+<mat-dialog-content class="modal-body">
+    <form class="proyectoFormulario" [formGroup]="formProyecto" class="was-validated" novalidate>
+
+
+        <!-- campos de nombre-->
+        <div>
+            <label for="nombre">Proyecto</label>
+            <div class="col-md-7">
+                <input type="text" [(ngModel)]="inputValue" (keyup)="convertToUppercase(inputValue) "
+                    [ngClass]="{'success': !nombreProyectoField?.hasError('required')}"
+                    placeholder="Ingrese el nombre del programa" class="form-control is-valid" formControlName='nombre'>
+                <!-- <div class="valid-feedback" *ngIf="!nombreProyectoField?.hasError('required')">
+                    Valor válido
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                por favor ingrese un valor válido para el nombre
+            </div>-->
+            </div>
+        </div>
+
+
+        <!-- campos de codigo programa-->
+        <div>
+            <label for="codigo">Código</label>
+            <div>
+                <input [ngClass]="{'success': !codigoProyecto?.hasError('required')}" type="text"
+                    onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Código"
+                    class="form-control is-valid" formControlName='codigo'>
+                <!--<div *ngIf="!codigoProyecto?.hasError('required')" >
+                        Valor válido
+                    </div>
+                </div>
+                <div *ngIf="codigoProyecto?.hasError('required')">
+                    por favor ingrese un valor válido para el codigo
+                </div>-->
+            </div>
+        </div>
+
+
+        <!-- campo para programa -->
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="idPrograma">Programa</label>
+            <div class="col-md-7">
+                <select class="form-select" formControlName='idPrograma'>
+                    <option [ngValue]="null">Seleccionar programa</option>
+                    <option *ngFor='let programa of Programas' [ngValue]="programa.id">
+                        {{programa.nombrePrograma}}</option>
+                </select>
+                <div class="valid-feedback" *ngIf="!idPrograma?.hasError('required')">
+                    Valor válido
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                por favor ingrese un valor válido para programa
+            </div>
+        </div>
+
+
+        <!-- campos de tiempo estimado-->
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="tiempoEstimado">Tiempo Estimado</label>
+            <div class="col-md-7">
+                <input type="number" onkeyup="javascript:this.value=this.value" placeholder="Ingrese el tiempo estimado"
+                    class="form-control is-valid" formControlName='tiempoEstimado'>
+                <div class="valid-feedback" *ngIf="!tiempoEstimado?.hasError('required')">
+                    Valor válido
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                por favor ingrese un valor válido para el tiempo estimado
+            </div>
+        </div>
+
+        <!-- campos de numero total raps-->
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="numeroTotalRaps">Numero de Raps</label>
+            <div class="col-md-7">
+                <input type="number" onkeyup="javascript:this.value=this.value"
+                    placeholder="Ingrese el numero total de raps" class="form-control is-valid"
+                    formControlName='numeroTotalRaps'>
+                <div class="valid-feedback" *ngIf="!numeroTotalRaps?.hasError('required')">
+                    Valor válido
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                por favor ingrese un valor válido para el numero total de raps
+            </div>
+        </div>
+
+        <!-- campos de id centro de formacion-->
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="idCentroFormacion">Centro de Formación</label>
+            <div class="col-md-7">
+                <input type="number" onkeyup="javascript:this.value=this.value"
+                    placeholder="Ingrese el centro de formacion" class="form-control is-valid"
+                    formControlName='idCentroFormacion'>
+                <div class="valid-feedback" *ngIf="!idCentroFormacion?.hasError('required')">
+                    Valor válido
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                por favor ingresé un valor válido para el centro de formacion
+            </div>
+        </div>
+
+    </form>
+    <div class="card-footer math-dialog-actions">
+        <button type="submit" mat-stroked-button color="primary" (click)="guardarProyecto()"
+            [disabled]="formProyecto.invalid">
+            <i class="fa fa-dot-circle-o"></i> Aceptar
+        </button>
+        <button mat-raised-button mat-dialog-close type="reset">
+
+            <i class="fa fa-ban"></i>
+            Cancelar
+        </button>
+        <button mat-raised-button mat-dialog-close color="accent">Accent</button>
+    </div>
+</mat-dialog-content>

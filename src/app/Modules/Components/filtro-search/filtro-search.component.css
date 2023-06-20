@@ -1,0 +1,55 @@
+.filtro{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:20px
+}
+.filtro form{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #192239;
+}
+.filtro input{
+    background-color:transparent;
+    border: none;
+    padding: 8px 5px 8px 5px;
+    color: #fff;
+    outline: none;
+}
+.filtro button{
+    border: none;
+    background-color:transparent;
+    transition: 0.3s;
+    z-index: 10;
+}
+.filtro button:active{
+    transform: scale(0.8);
+}
+.filtro picture{
+    display: flex;
+    width: 20px;
+    height: 20px;
+}
+.filtro picture svg{
+    width: 100%;
+    height: 100%; 
+}
+.filtro picture svg path{
+    fill: rgb(255, 255, 255);
+    
+}
+.filtrar{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    background-color: #192239;
+    border-radius: 5px;
+    align-items: center;
+    gap: 5px;
+    
+}
+.content-information{
+    gap: 20px;
+}

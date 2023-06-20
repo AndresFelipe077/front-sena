@@ -1,0 +1,15 @@
+<div class="bloque-company">
+  <ul class="container">
+    <li *ngFor="let activationCompanyUser of activationCompanyUsers">
+      <div class="content-company" (click)="selectCompany(activationCompanyUser)">
+        <div class="card-company">{{getCompanyName(activationCompanyUser)}}</div>
+        <div>
+          <picture class="image-company">
+            <img [src]="getCompanyLogoCSS(activationCompanyUser)" alt="">
+          </picture>
+        </div>
+        <div class="card-company">{{getRole(activationCompanyUser)}}</div>
+      </div>
+    </li>
+  </ul>
+</div>

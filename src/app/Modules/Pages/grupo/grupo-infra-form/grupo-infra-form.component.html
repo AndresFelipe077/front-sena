@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-header">
+      <p class="h4">Añadir Infraestructura</p>
+  </div>
+  <div class="card-body">
+      <form [formGroup]="formGrupoInfr" class="was-validated" novalidate #form="ngForm">
+          <div class="form-floating mb-3">
+              <input (change)="seleccionarInfraestructura($event)" class="form-control" list="infr-list" type="text"
+                  formControlName="idInfraestructura" id="idInfr" required>
+              <label for="idInfr">Infraestructura/Sede</label>
+              <datalist id="infr-list">
+                  <option *ngFor='let infr of infraestructuras'
+                      [value]="infr.nombreInfraestructura+'/'+infr.sede?.nombreSede"></option>
+              </datalist>
+              <div class="valid-feedback" *ngIf="!idInfraestructuraField?.hasError('required')">
+                  Valor válido
+              </div>
+              <div class="invalid-feedback">
+                  Por favor elija una infraestructura
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-floating mb-3">
+                      <input type="date" class="form-control" id="fechaInicial" formControlName='fechaInicial'
+                          id="fechaInicial" required>
+                      <label for="fechaInicial">Disponible desde</label>
+                      <div class="valid-feedback" *ngIf="!fechaInicialField?.hasError('required')">
+                          Valor válido
+                      </div>
+                      <div class="invalid-feedback">
+                          Elija desde cuando ese grupo va a usar la infraestructura
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-floating mb-3">
+                      <input type="date" class="form-control" id="fechaFinal" formControlName='fechaFinal' required>
+                      <label for="fechaFinal">Disponible hasta</label>
+                      <div class="valid-feedback" *ngIf="!fechaFinalField?.hasError('required')">
+                          Valor válido
+                      </div>
+                      <div class="invalid-feedback">
+                          Elija hasta cuando ese grupo va a usar la infraestructur
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- <ng-select [items]="infraestructuras" formControlName="idInfraestructura" [(ngModel)]="opcionSeleccionada" [filterable]="true" placeholder="Seleccione una opción"></ng-select> -->
+
+
+          <div class="row">
+              <button (click)="enviarInfraestructura(formGrupoInfr)" class="col col-md-6 btn btn-success">Agregar</button>
+              <button (click)="cancelar()" class="col col-md-6 btn btn-danger">Cancelar</button>
+          </div>
+      </form>
+  </div>
+</div>

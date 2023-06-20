@@ -1,0 +1,30 @@
+
+.information{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    color: #fff;
+    width: 100%;
+    gap: 10px;
+    
+}
+.information div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 50%;
+    background-color: #192239;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+}
+
+circle{
+    color:red;
+    border-radius: 10px;
+}
+

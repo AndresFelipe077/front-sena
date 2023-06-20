@@ -1,0 +1,366 @@
+.content-navbar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 10;
+    gap: 20px;
+    padding: 5px 0px;
+    margin: 0px;
+    width: 100%;
+    height: 60px;
+    background: #192239;
+    border-bottom: solid #203363 1px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    background-color: transparent;
+    padding: 0px 14px;
+}
+
+.NavBar picture {
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.NavBar li {
+    position: relative;
+    transition: 0.3s;
+}
+
+.NavBar li:nth-child(1) .luna {
+    position: absolute;
+    opacity: 1;
+}
+
+.NavBar li:nth-child(-1n+3):hover {
+    transform: scale(1.3);
+}
+
+.NavBar li:nth-child(1) .sol {
+    opacity: 0;
+    transform: scale(1.3);
+
+}
+
+.NavBar .Campana:nth-child(2) picture:hover {
+    animation-name: campana;
+    animation-duration: 0.3s;
+}
+
+@keyframes campana {
+    0% {
+        transform: rotate(15deg)
+    }
+
+    25% {
+        transform: rotate(-15deg)
+    }
+
+    50% {
+        transform: rotate(15deg)
+    }
+
+    75% {
+        transform: rotate(-15deg)
+    }
+
+    100% {
+        transform: rotate(15deg)
+    }
+}
+
+.NavBar li:nth-child(3) picture:hover {
+    transition: 0.5s;
+    transform: rotate(180deg);
+}
+
+.NavBar li:nth-child(4) {
+    border-radius: 40px;
+    width: 100%;
+    transition: 0.5s;
+    width: 46px;
+}
+
+.NavBar li:nth-child(4):hover {
+    border-left: solid #203363 2px;
+    transition: 0.5s;
+    width: 120px;
+}
+
+.user {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.user .name {
+    opacity: 0;
+    text-align: center;
+    color: #FFFFFF;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.NavBar li:nth-child(4):hover span {
+    opacity: 1;
+}
+
+.NavBar picture svg {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+}
+
+.content-information {
+    width: 1500px;
+    padding: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 10px;
+    fill: #ffffff;
+}
+.user img {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+
+}
+.optionUser {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+    left: -10px;
+    padding: 10px 0px 0px;
+    gap: 10px;
+}
+.user .optionUser .options {
+    display: flex;
+    flex-direction: column;
+    border-top: #ffffff51 1px solid;
+    gap: 5px;
+    padding: 10px 20px 10px 5px;
+    border-radius: 0 0 10px 10px;
+    background-color: #192239c0;
+    align-items: flex-start;
+}
+.user .optionUser .options li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    transition: 0.1s;
+    gap: 15px;
+}
+.options li:hover {
+    transform: none !important;
+}
+.options li:hover span{
+    color: #2353ac;
+    transition: 0.2s;
+}
+img.menu {
+    width: 40px;
+    height: 50px;
+    z-index: 2;
+    cursor: pointer;
+}
+.bot {
+    display: flex;
+    flex-direction: column;
+    width: 2.7rem;
+    border: 0;
+    background: transparent;
+    gap: .55rem;
+    justify-content: center;
+    margin: 17px 5px;
+    transition: 0.5s;
+}
+.bot>div {
+    display: flex;
+    background: rgb(255, 255, 255);
+    height: 2px;
+    width: 100%;
+    border-radius: 5px;
+    transition: all .5s;
+    transform-origin: left;
+    justify-content: center;
+    align-items: center;
+}
+
+/******************************************************************/
+.animate-menu {
+    transform: rotate(90deg);
+    transition: 0.5s;
+}
+
+.animate-menu-back {
+    transform: rotate(-180deg);
+    transition: 0.5s;
+}
+
+
+
+button.menu-container {
+    position: relative;
+    border: none;
+    background: none;
+    transition: 0.3s;
+}
+
+
+button.menu-container:hover {
+    animation: ease-in-out;
+    transform: scale(1.2);
+}
+
+.dropdown {
+    display: none;
+    background-color: #19223950;
+    padding-left: 4px;
+    padding-right: 4px;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    width: 50px;
+    z-index: 1;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+@keyframes dropdown-collapse {
+    0% {
+        height: 0;
+        overflow: hidden;
+    }
+
+    100% {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+}
+
+
+@keyframes dropdown-pull {
+    0% {
+        height: 100vh;
+    }
+
+    100% {
+        height: 0;
+    }
+
+}
+
+
+.hide {
+    display: flex;
+    animation-name: dropdown-pull;
+    animation-duration: 0.5s;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    color: #192239;
+    transition: 0.3s;
+}
+
+
+.expand {
+    width: 160px;
+    display: flex;
+    transition: 0.5s;
+    padding-left: 0px;
+}
+
+.expand a{
+    padding-left: 5px;
+    transition: 0.5s;
+}
+
+.expand li {
+    margin: 0px 20px;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.dropdown-item img {
+    width: 30px;
+    height: 50px;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(245, 245, 245, 0.692);
+    border-radius: 50%;
+    padding: 0px 10px;
+}
+
+.show {
+    display: flex;
+    animation-name: dropdown-collapse;
+    animation-duration: 1s;
+    transition: 0.5s;
+}
+
+.showNN {
+    display: flex;
+    transition: 0.5s;
+}
+
+a {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 13px;
+    margin: 0;
+    cursor: pointer;
+    color: #c4c4c4;
+    transition: 0.2s;
+    height: 38px;
+}
+
+a:hover {
+    transform: scale(1.2) translateX(15px);
+    transition: 0.2s;
+}
+
+
+.translate{
+    transform: translateX(50px) rotateZ(90deg) rotateY(180deg);
+}
+
+.activa--li {
+    background-color: #161a2494;
+    color: #002f86 !important;
+    border-left: #002f86 solid 4px;
+}
+
+span.text{
+    font-size: 0.7em;
+}
+
+/******************************************************************/

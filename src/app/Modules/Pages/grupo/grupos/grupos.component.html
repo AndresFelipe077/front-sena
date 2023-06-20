@@ -1,0 +1,23 @@
+<div class="button-añadir">
+  <a><button (click)="openModalCreate1()">Añadir1</button></a>
+</div>
+
+
+<div class="slider" class="card-training-program">
+  <div class="training-program" *ngFor="let grupo of grupos">
+      <div class="active-tokens">
+          <p>56</p>
+          <p>Fichas activas</p>
+      </div>
+      <div class="description">
+          <p>Numero de grupo</p>
+          <p>ID {{grupo.id}}</p>
+          <p>{{grupo.nombre}} horas estimadas</p>
+          <p>{{grupo.nombre}} Raps esperados</p>
+      </div>
+      <div class="actions">
+          <button><img src="../../../assets/icons/reload.svg"></button>
+          <button><img src="../../../assets/icons/delete.svg"></button>
+      </div>
+  </div>
+</div>

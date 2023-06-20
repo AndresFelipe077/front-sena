@@ -1,0 +1,32 @@
+<div mat-dialog-title> {{this.extendModalTitle}}</div>
+<form [formGroup]="formExtend" novalidate (ngSubmit)="saveData()">
+    <mat-dialog-content>
+        <div class="form-body">
+            <div class="form-content" *ngFor="let fill of this.filler">
+                <div class="form-item" *ngIf="fill.type == 'input'">
+                    <label [for]="fill.formControlName">{{fill.fieldName}}</label>
+                    <input [formControlName]="fill.formControlName || ''" type="text" [(ngModel)]="fill.ngModel"
+                        (keyup)="  fill.uppercase ? convertToUppercase(fill) : '' " [placeholder]="fill.placeholder"
+                        required />
+                </div>
+                <div class="form-item" *ngIf="fill.type == 'select'">
+                    <label [for]="fill.formControlName">{{fill.fieldName}}</label>
+                    <select [formControlName]="fill.formControlName || ''" required="true">
+                        <option selected style="color:black" [ngValue]="null"> Seleccionar {{fill.fieldName}} </option>
+                        <option *ngFor='let item of fill.data' [ngValue]="item.dataId">{{item.data}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+            <button type="submit" [disabled]="!isFormComplete">
+                Aceptar
+            </button>
+            <button mat-dialog-close>
+                Cancelar
+            </button>
+
+    </mat-dialog-actions>
+</form>

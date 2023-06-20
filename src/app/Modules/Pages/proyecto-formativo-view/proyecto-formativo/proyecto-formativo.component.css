@@ -1,0 +1,106 @@
+.porcentajes {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content p:nth-child(2),
+.content p:nth-child(3) {
+  color: #9C9C9C;
+}
+
+.porcentajes .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #232222;
+  padding: 20px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+circle {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  right: 0%;
+  fill: none;
+  stroke-width: 15px;
+  transform: rotate(-90deg);
+  transform-origin: 50%;
+  stroke-dasharray: 100 100;
+  stroke-linecap: round;
+}
+
+circle:nth-child(1) {
+  opacity: 0.2;
+}
+
+svg {
+  border-radius: 50%;
+  background-color: #192239;
+
+}
+
+@keyframes rellenar {
+  to {
+    stroke-dasharray: var(--porcentaje) 100;
+  }
+}
+
+circle:nth-child(2) {
+  stroke: var(--color);
+  stroke-dasharray: 0 100;
+  animation: rellenar 1s linear forwards;
+}
+
+.button-añadir {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.button-añadir button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #006B00;
+  border-radius: 10px;
+  padding: 8px;
+  border: none;
+  gap: 5px;
+  color: #fff;
+}
+
+.button-añadir button::before {
+  content: "+";
+  color: #fff;
+  font-size: 22px;
+}
+
+
+.actions button {
+  background: transparent;
+  border: none;
+}
+
+.actions {
+  width: 8px;
+  position: relative;
+  top: 95px;
+
+  color: #ee3f3f;
+}
+
+.actions button {
+  cursor: pointer;
+}
+
+.actions img {
+  width: 15px;
+}

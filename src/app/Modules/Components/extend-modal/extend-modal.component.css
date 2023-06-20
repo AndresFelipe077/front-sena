@@ -1,0 +1,90 @@
+div.mat-dialog-content{
+    background: red;
+}
+
+.form-item{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+
+.form-body{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mdc-dialog__title {
+    text-align: center!important;
+
+}
+select option{
+    background-color: #182034;
+    border: none;
+    color: white;
+}
+
+select option:focus{
+    background: #0a9e56;
+    border: none;
+    color: white;
+
+}
+
+select{
+    height: 30px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+input.success{
+    border-color: #006B00;
+}
+
+
+.button-div button{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    background-color: #006b00;
+    border-radius: 20px;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    transition: 0.3s ;
+    cursor: pointer;
+}
+
+
+button{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    background-color: #006b00;
+    border-radius: 20px;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    transition: 0.3s ;
+    cursor: pointer;
+}
+
+.mat-mdc-dialog-actions {
+    justify-content: space-around;
+}
+
+.button-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

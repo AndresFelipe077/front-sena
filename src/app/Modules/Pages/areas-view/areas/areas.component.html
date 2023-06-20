@@ -1,0 +1,55 @@
+<div class="bloque-slick-information">
+  <div class="content-slick-information">
+    <div class="barraBusqueda">
+      <div class="container-4">
+          <label for="search">
+            <input type="search" autocomplete="off" id="search" placeholder="Buscar...">
+            <button class="icon">
+              <span class="material-symbols-outlined">
+                search
+              </span>
+            </button>
+          </label>
+      </div>
+  </div>
+    <div class="slick-wrapper">
+      <div class="slider" #slickElement>
+        <div class="slide-item" *ngFor="let area of areas">
+          <div class="area">
+            <picture>
+              <img width="64" height="64" src={{area.iconUrl}} alt="artificial-intelligence" />
+            </picture>
+            <div>
+              <li>{{ area.nombreArea }}</li>
+              <span>{{ area.codigo }}</span>
+            </div>
+            <div class="button">
+              <a><button>ir</button></a>
+            </div>
+          </div>
+          <div class="actions">
+            <button (click)="openModalUpdate(area)"><img src="../../../assets/icons/reload.svg"></button>
+            <button (click)="deleteArea(area.id!)"><img src="../../../assets/icons/delete.svg"></button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="button">
+      <a><button class="añadir" (click)="openModalCreate()">Añadir</button></a>
+    </div>
+    <div class="descripcion">
+      <div class="desc-title">
+        <h2>Descripcion</h2>
+        <span class="material-symbols-outlined">
+          expand_more
+        </span>
+      </div>
+      <div class="panel-body">
+          <div class="tex-carc">
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae accusamus voluptatem porro placeat ut perferendis praesentium quae ab nostrum animi culpa dolores magnam, esse dignissimos ratione doloribus a ad temporibus!</p>
+          </div>
+      </div>
+  </div>
+  </div>
+
+</div>

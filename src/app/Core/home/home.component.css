@@ -1,0 +1,47 @@
+:root{
+    --margin: 70px;
+}
+
+.home-display{
+    margin-top: 100px;
+    padding-bottom: 80px;
+    margin-left: var(--margin);
+    transition: 0.5s;
+}
+
+.collapsed{
+    animation-name: collapse-right-first;
+    animation-duration: 1s;
+    margin-left: 120px;
+}
+
+.collapse{
+    animation-name: collapse-view;
+    animation-duration: 0.5s;
+
+}
+
+.uncollapsed{
+    animation-name: uncollapse-right-first;
+    animation-duration: 1s;
+    margin-left: 0px;
+}
+
+@keyframes collapse-view {
+    0%{margin-left: var(--margin-before);}
+    100%{margin-left: var(--margin);}
+}
+
+@keyframes collapse-right-first {
+
+    0%{margin-left: 0;}
+
+    100%{margin-left: 120px;}
+}
+
+@keyframes uncollapse-right-first {
+
+    0%{margin-left: 120px;}
+
+    100%{margin-left: 0px;}
+}

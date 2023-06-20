@@ -1,0 +1,264 @@
+<mat-dialog-content>
+  <div class="modal-body">
+    <div class="card-header">
+      <strong>Crear Ficha</strong>
+    </div>
+    <div class="card-body">
+
+      <form class="grupoForm" [formGroup]="formGrupo" class="was-validated" novalidate>
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idPrograma">Programa</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idPrograma'>
+              <option [ngValue]="null">Seleccionar programa </option>
+              <option *ngFor='let programa of programas' [ngValue]="programa.id">
+                {{programa.nombrePrograma}}</option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idProgramaField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para programa
+          </div>
+        </div>
+
+        <!--Campo para introducir el nombre del grupo-->
+        <div class="form-floating mb-3">
+          <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"
+            id="nombreGrupo" formControlName='nombreGrupo'>
+          <label for="nombreGrupo">Número de ficha / nombre</label>
+          <div class="valid-feedback" *ngIf="!nombreGrupoField!.hasError('required')">
+            Valor válido
+          </div>
+          <div class="invalid-feedback">
+            Por favor ingresé un valor válido para el numero de la ficha
+          </div>
+        </div>
+
+        <!--Horario Infraestructura-->
+        <div class="row justify-content-center">
+          <div class="card-header row-md-10 row justify-content-between" *ngIf="!showFormHorario else formHorario">
+            <p class="col col-md-10 h4 mb-0">Añadir Infraestructura</p>
+            <button class="col col-sm-1 btn btn-success rounded-circle justify-content-center aling-items-center"
+              type="button" id="addInfraestructura" (click)="openModalCreate()">+</button>
+
+
+          </div>
+          <ng-template class="row" #formHorario>
+            <app-grupo-infra-form (storeInfr)="addInfraestructura($event)"
+              (cancelInfr)="cancelarHorarioInfraestructura()" [infraestructuras]="infraestructuras">
+            </app-grupo-infra-form>
+          </ng-template>
+          <div class="card-body">
+            <p class="h4">Infraestructuras</p>
+            <ng-container *ngFor="let horario of horariosInfra">
+              <app-grupo-infra (remove)="removeInfraestructura($event)" [infraestructura]="horario">
+              </app-grupo-infra>
+            </ng-container>
+          </div>
+        </div>
+
+
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idNivel">Nivel de formación</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idNivel'>
+              <option [ngValue]="null">Seleccionar nivel formación </option>
+              <option *ngFor='let nivel of niveles' [ngValue]="nivel.id">{{nivel.nivel}}</option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idNivelField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para el nivel de formación
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idTipoFormacion">Tipo de formación</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idTipoFormacion'>
+              <option [ngValue]="null">Selecionar tipo de formación</option>
+              <option *ngFor='let tipoFormacion of tipoFormaciones' [ngValue]="tipoFormacion.id">
+                {{tipoFormacion.nombreTipoFormacion}}</option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idTipoFormacionField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para el tipo de formación
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idEstado">Tipo de estado</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idEstado'>
+              <option [ngValue]="null">Selecionar estado</option>
+              <option *ngFor='let estado of estadoGrupos' [ngValue]="estado.id">{{estado.nombreEstado}}</option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idEstadoField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para el tipo de estado
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idTipoOferta">Tipo de oferta</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idTipoOferta'>
+              <option [ngValue]="null">Selecionar tipo de oferta</option>
+              <option *ngFor='let tipoOferta of tipoOfertas' [ngValue]="tipoOferta.id">{{tipoOferta.nombreOferta}}
+              </option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idEstadoField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para el tipo de oferta
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="fechaInicial" formControlName='fechaInicial'
+                #fechaInicialInput>
+              <label for="fechaInicial">Fecha inicial lectiva</label>
+              <div class="valid-feedback" *ngIf="!fechaInicialField!.hasError('required')">
+                Valor válido
+              </div>
+              <div class="invalid-feedback">
+                Por favor ingresé un valor válido para la fecha inicial
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="floatingInput" formControlName='fechaFinal' required>
+              <label for="floatingInput">Fecha fin lectiva</label>
+              <div class="valid-feedback" *ngIf="!fechaFinalField!.hasError('required')">
+                Valor válido
+              </div>
+              <div class="invalid-feedback">
+                Por favor ingresé un valor válido para la fecha final
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="idTipoGrupo">Tipo de grupo</label>
+          <div class="col-md-7">
+            <select class="form-select" formControlName='idTipoGrupo'>
+              <option [ngValue]="null">Selecionar tipo de grupo</option>
+              <option *ngFor='let tipoGrupo of tipoGrupos' [ngValue]="tipoGrupo.id">{{tipoGrupo.nombreTipoGrupo}}
+              </option>
+            </select>
+            <div class="valid-feedback" *ngIf="!idTipoGrupoField?.hasError('required')">
+              Valor válido
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            por favor ingrese un valor válido para programa
+          </div>
+        </div>
+
+
+        <!-- <div class="row mb-2">
+          <div class="col-sm-10">
+            <div class="form-floating">
+              <select class="form-select" id="tipoGrupo" aria-label="Floating label select example"
+                formControlName="idTipoGrupo">
+                <option selected>Selecionar tipo de grupo</option>
+                <option *ngFor='let tipoGrupo of tipoGrupos' [ngValue]="tipoGrupo.id">{{tipoGrupo.nombreTipoGrupo}}
+                </option>
+              </select>
+              <label for="tipoGrupo">Tipo de grupo</label>
+              <div class="valid-feedback" *ngIf="!idTipoGrupoField!.hasError('required')">
+                Valor válido
+              </div>
+              <div class="invalid-feedback">
+                Por favor ingresé un valor válido para el tipo de grupo
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 mt-2">
+            <button (click)="agregarTipoGrupo()" type="button" class="btn btn-success rounded-circle">+</button>
+          </div>
+          <app-tipogrupos *ngIf="showFormTipoG" [tipoGrupos]="tipoGrupos" (store)="guardarTipoGrupo($event)"
+            (cancel)="cancelarTipoGrupo()">
+          </app-tipogrupos>
+        </div> -->
+
+
+        <div class="form-floating mb-3">
+          <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" style="height: 100px"
+            placeholder="Leave a comment here" id="floatingTextarea" formControlName='observacion' required></textarea>
+          <label for="nombreGrupo">Observación</label>
+          <div class="valid-feedback" *ngIf="!nombreGrupoField!.hasError('required')">
+            Valor válido
+          </div>
+          <div class="invalid-feedback">
+            Por favor ingresé un valor válido para la observación
+          </div>
+        </div>
+
+        <!-- <div class="card">
+          <div class="card-header">
+            <strong> Seleccione la jornada </strong>
+          </div>
+          <div class="card-body">
+
+            <div class="row row-cols-3">
+              <div class="col">
+                <label class="pointer">
+                  <app-custom-switch [size]="7" [checked]="allJornadas" (checkedChange)="changeAllJornadas($event)">
+                  </app-custom-switch>
+                  Todas
+                </label>
+              </div>
+              <div class="col-md-3" *ngFor="let jor of jornadas; let i = index;">
+                <label class="pointer">
+                  <app-custom-switch [size]="7" [checked]="jor.checked" (checkedChange)="changeJornada($event, i)"
+                    id="check{{ jor.id }}">
+                  </app-custom-switch>
+                  {{jor.nombreJornada}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </form>
+
+
+
+      <div class="card-footer math-dialog-actions">
+
+        <button mat-raised-button mat-dialog-close type="reset">
+
+          <i class="fa fa-ban"></i>
+          Cancelar
+        </button>
+        <button mat-raised-button mat-dialog-close color="accent" (click)="guardarGrupo()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>

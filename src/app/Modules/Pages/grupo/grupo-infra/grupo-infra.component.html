@@ -1,0 +1,10 @@
+<p>Nombre de infraestructura: {{ infraestructura.nombreInfraestructura }}</p>
+<div class="row">
+    <div class="col-sm-6">
+        <p>Fecha inicial: {{ infraestructura.horario_infraestructura?.fechaInicial }}</p>
+    </div>
+    <div class="col-sm-6">
+        <p>Fecha final: {{ infraestructura.horario_infraestructura?.fechaFinal }}</p>
+    </div>
+</div>
+<span class="btn btn-danger" (click)="borrarInfr()">Eliminar</span>

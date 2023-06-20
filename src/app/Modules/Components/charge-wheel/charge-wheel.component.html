@@ -1,0 +1,16 @@
+<div class="content-wheel">
+    <div class="charge_wheel" *ngFor="let item of  this.filler; index as i">
+        <div class="porcentajes" style="--porcentaje: {{porcentajeNumerico}}">
+          <div class="content">
+            <p></p>
+            <p>Etapa Lectiva</p>
+            <p>14 aprendices</p>
+            <p>{{porcentajeNumerico}}%</p>
+          </div>
+          <svg width="230px" height="230px">
+            <circle r="100px" cx="50%" cy="50%" pathLength="100" [style.stroke]="colores[i]"></circle>
+            <circle r="100px" cx="50%" cy="50%" pathLength="100" [style.stroke]="colores[i]"></circle>
+          </svg>
+        </div>
+      </div>
+ </div>
