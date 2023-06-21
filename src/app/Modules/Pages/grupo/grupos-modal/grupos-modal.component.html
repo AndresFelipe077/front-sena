@@ -29,7 +29,7 @@
           <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"
             id="nombreGrupo" formControlName='nombreGrupo'>
           <label for="nombreGrupo">Número de ficha / nombre</label>
-          <div class="valid-feedback" *ngIf="!nombreGrupoField!.hasError('required')">
+          <div class="valid-feedback" *ngIf="!nombreGrupoField?.hasError('required')">
             Valor válido
           </div>
           <div class="invalid-feedback">
@@ -245,19 +245,23 @@
           </div>
         </div> -->
 
+
+
+
+        <div class="card-footer math-dialog-actions">
+
+          <button mat-raised-button mat-dialog-close color="accent" (click)="guardarGrupo()">Aceptar</button>
+
+          <button mat-raised-button mat-dialog-close type="reset">
+
+            <i class="fa fa-ban"></i>
+            Cancelar
+          </button>
+
+        </div>
+
       </form>
 
-
-
-      <div class="card-footer math-dialog-actions">
-
-        <button mat-raised-button mat-dialog-close type="reset">
-
-          <i class="fa fa-ban"></i>
-          Cancelar
-        </button>
-        <button mat-raised-button mat-dialog-close color="accent" (click)="guardarGrupo()">Aceptar</button>
-      </div>
     </div>
   </div>
 

@@ -106,4 +106,5 @@ export class ExtendModalComponent {
   convertToUppercase(fill: ExtendModalFiller): void {
     fill.ngModel = fill.ngModel!.toUpperCase();
   }
+  
 }

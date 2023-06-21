@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormGroup } from '@angular/forms';
 import { InfraestructuraModel } from '@models/infraestructura.model';
+import { NotificationOptions } from '@models/notification-options.model';
 import { NotificationService } from '@services/notification-service';
 
 @Component({
@@ -9,6 +10,8 @@ import { NotificationService } from '@services/notification-service';
   styleUrls: ['./grupo-infra-form.component.css']
 })
 export class GrupoInfraFormComponent {
+
+  options: NotificationOptions = { message: "Por favor seleccione una infraestructura existente"};
 
   @Input() infraestructuras: InfraestructuraModel[] = [];
 
@@ -56,7 +59,7 @@ export class GrupoInfraFormComponent {
       };
     } else {
       console.log('Error 1')
-      // this._uiNotificationService.error('Por favor seleccione una infraestructura existente');
+      this._noficacionService.showNotification(this.options);
     }
   }
 
@@ -66,7 +69,7 @@ export class GrupoInfraFormComponent {
       this.addInfraestructura();
     } else {
       console.log('Error 2')
-      // this._uiNotificationService.error('Por favor seleccione una infraestructura existente');
+      this._noficacionService.showNotification(this.options);
     }
   }
 

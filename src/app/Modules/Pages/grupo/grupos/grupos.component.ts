@@ -43,6 +43,14 @@ import { TipoOfertaService } from '@services/tipo-oferta.service';
   styleUrls: ['./grupos.component.css'],
 })
 export class GruposComponent implements OnInit {
+
+
+
+
+
+
+  selectedCar!: number;
+
   tipoGrupos: TipoGrupoModel[] = [];
 
   tipoGrupo: any;
@@ -105,7 +113,6 @@ export class GruposComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getProyecto();
     this.getGrupo();
     this.getTipoGrupo();
     this.getNivelFormacion();
@@ -127,7 +134,11 @@ export class GruposComponent implements OnInit {
     this.grupo = {} as GrupoModel;
   }
 
+  filler: ExtendModalFiller[] = [];
+
+
   openModalCreate1() {
+
     this.filler = [
       {
         fieldName: 'Programa',
@@ -181,7 +192,6 @@ export class GruposComponent implements OnInit {
         fieldName: 'Observación',
         placeholder: 'Observación',
         uppercase: true,
-        type: 'textarea'
       },
     ];
 
@@ -190,12 +200,17 @@ export class GruposComponent implements OnInit {
       ExtendModalComponent,
       { data: pass }
     );
-    this.grupo = {} as GrupoModel;
+
+    // this.grupo = {} as GrupoModel;
+
     console.log('filler de abajo en boton', pass);
+
     dialogRef.afterClosed().subscribe((data) => {
       let grupo: GrupoModel;
       console.log('Dialog output:', data);
     });
+
+
   }
 
   openModalUpdate1(grupo: GrupoModel) {
@@ -254,7 +269,6 @@ export class GruposComponent implements OnInit {
     //this.showModalProyecto = false;
   }
 
-  filler: ExtendModalFiller[] = [];
 
   getTipoGrupo() {
     this._tipoGrupoService.traerTipoGrupos().subscribe(
@@ -408,4 +422,7 @@ export class GruposComponent implements OnInit {
       });
     }
   }
+
+
+
 }

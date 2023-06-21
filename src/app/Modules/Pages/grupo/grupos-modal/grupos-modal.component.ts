@@ -38,13 +38,14 @@ import { TipoOfertaService } from '@services/tipo-oferta.service';
 import { debounceTime } from 'rxjs/operators';
 import { GrupoInfraFormComponent } from '../grupo-infra-form/grupo-infra-form.component';
 
-
 @Component({
   selector: 'app-grupos-modal',
   templateUrl: './grupos-modal.component.html',
   styleUrls: ['./grupos-modal.component.css'],
 })
 export class GruposModalComponent {
+
+  @Input() grupo!: GrupoModel;
 
   programas: ProgramaModel[] = [];
   niveles: NivelFormacionModel[] = [];
@@ -62,14 +63,11 @@ export class GruposModalComponent {
 
   formGrupo!: UntypedFormGroup;
 
-
   showFormHorario: boolean = false;
 
   horariosInfra: InfraestructuraModel[] = [];
 
   @Input() infraestructuras: InfraestructuraModel[] = [];
-
-
 
   constructor(
     private notificationService: NotificationService,
@@ -85,21 +83,20 @@ export class GruposModalComponent {
     private dialog: MatDialog,
     private _grupoService: GruposService,
     // private dialogRef: MatDialogRef<AreasModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public grupo: GrupoModel,
+    // @Inject(MAT_DIALOG_DATA) public grupo: GrupoModel,
     private formBuilder: UntypedFormBuilder
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-      this.traerTipoGrupos();
-      this.traerProgramas();
-      this.traerNivelesFormacion();
-      this.traerTipoFormaciones();
-      this.traerEstados();
-      this.traerTipoOfertas();
-      this.setGrupo();
-
+    this.traerTipoGrupos();
+    this.traerProgramas();
+    this.traerNivelesFormacion();
+    this.traerTipoFormaciones();
+    this.traerEstados();
+    this.traerTipoOfertas();
+    this.setGrupo();
   }
 
   ngOnViewInit() {
@@ -154,7 +151,6 @@ export class GruposModalComponent {
   //   return this.jornadasGrupo.filter((j) => j['checked']).length;
   // }
 
-
   // setIndexes(grupo: GrupoModel) {
   //   this.idTipoGrupo = grupo.idTipoGrupo;
   //   this.idPrograma = grupo.idPrograma;
@@ -177,14 +173,13 @@ export class GruposModalComponent {
   //   this.horariosInfra = grupo.infraestructuras;
   // }
 
-
   traerTipoGrupos() {
     this._tipoGrupoService.traerTipoGrupos().subscribe(
       (tipoGrupo: TipoGrupoModel[]) => {
         this.tipoGrupos = tipoGrupo;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
         this.notificationService.showNotification({
           message: 'Error de conexión',
           type: 'success',
@@ -199,7 +194,7 @@ export class GruposModalComponent {
         this.programas = programa;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
         this.notificationService.showNotification({
           message: 'Error de conexión',
           type: 'success',
@@ -229,7 +224,7 @@ export class GruposModalComponent {
         this.niveles = niveles;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
         this.notificationService.showNotification({
           message: 'Error de conexión',
           type: 'success',
@@ -244,7 +239,7 @@ export class GruposModalComponent {
         this.tipoFormaciones = tiposF;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
         this.notificationService.showNotification({
           message: 'Error de conexión',
           type: 'success',
@@ -259,7 +254,7 @@ export class GruposModalComponent {
         this.estadoGrupos = estado;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
         this.notificationService.showNotification({
           message: 'Error de conexión',
           type: 'success',
@@ -274,7 +269,7 @@ export class GruposModalComponent {
         this.tipoOfertas = tipoOferta;
       },
       (error: any) => {
-        console.log(error)
+        console.log(error);
 
         this.notificationService.showNotification({
           message: 'Error de conexión',
@@ -300,31 +295,33 @@ export class GruposModalComponent {
   //   );
   // }
 
-
   setGrupo() {
-    this.formGrupo.patchValue({
-      nombreGrupo: this.grupo.nombre,
-      fechaInicial: this.grupo.fechaInicialGrupo,
-      fechaFinal: this.grupo.fechaFinalGrupo,
-      observacion: this.grupo.observacion,
-      nombreJornada: this.grupo.nombreJornada,
-      idPrograma: this.grupo.programa!.nombrePrograma,
+    console.log(this.grupo)
+      this.formGrupo.patchValue({
+        nombreGrupo: this.grupo.nombre,
+        fechaInicial: this.grupo.fechaInicialGrupo,
+        fechaFinal: this.grupo.fechaFinalGrupo,
+        observacion: this.grupo.observacion,
+        nombreJornada: this.grupo.nombreJornada,
 
-      idTipoGrupo: this.grupo.idTipoGrupo,
-      tipogrupo: this.grupo.tipo_grupo,
+        idPrograma: this.grupo.programa!.nombrePrograma,
 
-      idNivel: this.grupo.idNivel,
-      nivel: this.grupo.nivel_formacion,
+        idTipoGrupo: this.grupo.idTipoGrupo,
+        tipogrupo: this.grupo.tipo_grupo,
 
-      idTipoFormacion: this.grupo.idTipoFormacion,
-      tipoFormacion: this.grupo.tipo_formacion,
+        idNivel: this.grupo.idNivel,
+        nivel: this.grupo.nivel_formacion,
 
-      idEstado: this.grupo.idEstado,
-      estado: this.grupo.estado_grupo,
+        idTipoFormacion: this.grupo.idTipoFormacion,
+        tipoFormacion: this.grupo.tipo_formacion,
 
-      idTipoOferta: this.grupo.idTipoOferta,
-      tipoOferta: this.grupo.tipo_oferta,
-    });
+        idEstado: this.grupo.idEstado,
+        estado: this.grupo.estado_grupo,
+
+        idTipoOferta: this.grupo.idTipoOferta,
+        tipoOferta: this.grupo.tipo_oferta,
+      });
+
   }
 
   private buildForm() {
@@ -346,18 +343,22 @@ export class GruposModalComponent {
   }
 
   guardarGrupo() {
-    this.notificationService.showNotification({
-      message: 'Cambios guardados',
-      type: 'success',
-    });
-    var event = this.getGrupo();
+    const event = this.getGrupo();
     if (event.id) {
       this._grupoService.actualizarGrupo(event).subscribe((response) => {
         console.log(response);
+        this.notificationService.showNotification({
+          message: 'Grupo actualizado',
+          type: 'success',
+        });
       });
     } else {
       this._grupoService.crearGrupo(event).subscribe((response) => {
         console.log(response);
+        this.notificationService.showNotification({
+          message: 'Grupo creado',
+          type: 'success',
+        });
       });
     }
   }
@@ -392,7 +393,6 @@ export class GruposModalComponent {
     this.grupo = {} as GrupoModel;
   }
 
-
   addInfraestructura(infr: InfraestructuraModel) {
     this.showFormHorario = false;
     this.horariosInfra.push(infr);
@@ -406,5 +406,4 @@ export class GruposModalComponent {
     const index = this.horariosInfra.findIndex((infr) => infr.id === idInfr);
     this.horariosInfra.splice(index, 1);
   }
-
 }
