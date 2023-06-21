@@ -168,16 +168,20 @@ export class GruposComponent implements OnInit {
         fieldName: 'Fecha inicial lectiva',
         placeholder: 'fecha inicial',
         uppercase: true,
+        control: 'date'
       },
       {
         fieldName: 'Fecha final lectiva',
         placeholder: 'fecha final',
         uppercase: true,
+        control: 'date'
+
       },
       {
         fieldName: 'Observación',
         placeholder: 'Observación',
         uppercase: true,
+        type: 'textarea'
       },
     ];
 

@@ -5,7 +5,7 @@
             <div class="form-content" *ngFor="let fill of this.filler">
                 <div class="form-item" *ngIf="fill.type == 'input'">
                     <label [for]="fill.formControlName">{{fill.fieldName}}</label>
-                    <input [formControlName]="fill.formControlName || ''" type="text" [(ngModel)]="fill.ngModel"
+                    <input [type]="fill.control" [formControlName]="fill.formControlName || ''" type="text" [(ngModel)]="fill.ngModel"
                         (keyup)="  fill.uppercase ? convertToUppercase(fill) : '' " [placeholder]="fill.placeholder"
                         required />
                 </div>

@@ -16,7 +16,7 @@
           <p>Fecha final: {{grupo.fechaFinalGrupo}}</p>
       </div>
       <div class="actions">
-          <button><img src="../../../assets/icons/reload.svg"></button>
+          <button (click)="openModalUpdate1(grupo)"><img src="../../../assets/icons/reload.svg"></button>
           <button (click)="deleteGrupo(grupo.id ? grupo.id : 0)"><img src="../../../assets/icons/delete.svg"></button>
       </div>
   </div>
