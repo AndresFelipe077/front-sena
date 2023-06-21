@@ -1,4 +1,4 @@
 export interface EstadoGrupoModel {
   id: number;
-  nombreEstado?: string;
+  nombreEstado: string;
 }

@@ -28,6 +28,14 @@ import { NivelFormacionService } from '@services/nivel-formacion.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import 'slick-carousel';
 import { filter } from 'rxjs/operators';
+import { TipoGrupoModel } from '@models/tipogrupo.model';
+import { TipoFormacionModel } from '@models/tipo-formacion.model';
+import { EstadoGrupoModel } from '@models/estado-grupo.model';
+import { TipoOfertaModel } from '@models/tipo-oferta.model';
+import { TipoGrupoService } from '@services/tipo-grupo.service';
+import { TipoFormacionService } from '@services/tipo-formacion.service';
+import { EstadoGrupoService } from '@services/estado-grupo.service';
+import { TipoOfertaService } from '@services/tipo-oferta.service';
 
 @Component({
   selector: 'app-grupos',
@@ -36,6 +44,10 @@ import { filter } from 'rxjs/operators';
 })
 export class GruposComponent implements OnInit {
 
+  tipoGrupos: TipoGrupoModel[] = [];
+
+  tipoGrupo: any;
+
   programas: ProgramaModel[] = [];
 
   programa: any[] = [];
@@ -43,6 +55,19 @@ export class GruposComponent implements OnInit {
   niveles: NivelFormacionModel[] = [];
 
   nivelFormacion: any[] = [];
+
+  tipoFormaciones: TipoFormacionModel[] = [];
+
+  tipoFormacion: any[] = [];
+
+  estados: EstadoGrupoModel[] = [];
+
+  estado: any[] = [];
+
+  tipoOfertas: TipoOfertaModel[] = [];
+
+  tipoOferta: any[] = [];
+
 
   Names: string[] = [];
 
@@ -74,14 +99,24 @@ export class GruposComponent implements OnInit {
 
     private notificationService: NotificationService,
     private _grupoService: GruposService,
-    private _nivelFormacion: NivelFormacionService
+    private _nivelFormacion: NivelFormacionService,
+    private _tipoGrupoService: TipoGrupoService,
+    private _tipoFormacionService: TipoFormacionService,
+    private _estadoGrupo: EstadoGrupoService,
+    private _tipoOferta: TipoOfertaService,
+
   ) {}
 
   ngOnInit(): void {
     // this.getProyecto();
     this.getGrupo();
+    this.getTipoGrupo();
     this.getNivelFormacion();
     this.getPrograma();
+    this.getTipoFormacion();
+    this.getTipoOferta();
+    this.getEstadoGrupo();
+    this.getTipoOferta();
   }
 
   openModalUpdate(proyecto: GrupoModel) {
@@ -120,6 +155,11 @@ export class GruposComponent implements OnInit {
         data: this.nivelFormacion,
 
 
+      },
+      {
+        fieldName: "TipoGrupo",
+        type: "select",
+        data: this.tipoGrupo,
       },
       {
         fieldName: "Numero de raps",
@@ -211,6 +251,25 @@ export class GruposComponent implements OnInit {
   filler: ExtendModalFiller[] = [];
 
 
+  getTipoGrupo() {
+    this._tipoGrupoService.traerTipoGrupos()
+      .subscribe((tipoGrupo: TipoGrupoModel[]) => {
+        this.tipoGrupos = tipoGrupo;
+        this.Names = this.tipoGrupos.map(tipoGrupo => tipoGrupo.nombreTipoGrupo)
+        this.Ids = this.tipoGrupos.map(tipoGrupo => tipoGrupo.id || "")
+
+        this.tipoGrupo = this.Names.map((item, index) => ({
+          data: item.toString(),
+          dataId: this.Ids[index]
+        }));
+        console.log(this.tipoGrupo);
+
+        console.log("filler de abajo", this.filler);
+
+      }, error => {
+        this.notificationService.showNotification({ message: 'Error de conexión' });
+      });
+  }
 
   getPrograma() {
     this._programaService.traerProgramas()
@@ -244,6 +303,60 @@ export class GruposComponent implements OnInit {
           dataId: this.Ids[index]
         }));
         console.log(this.nivelFormacion);
+
+      }, error => {
+        this.notificationService.showNotification({ message: 'Error de conexión' });
+      });
+  }
+
+  getTipoFormacion() {
+    this._tipoFormacionService.traerTipoFormaciones()
+      .subscribe((tipoFormacion: TipoFormacionModel[]) => {
+        this.tipoFormaciones = tipoFormacion;
+        this.Names = this.tipoFormaciones.map(tipoFormacion => tipoFormacion.nombreTipoFormacion)
+        this.Ids = this.tipoFormaciones.map(tipoFormacion => tipoFormacion.id || "")
+
+        this.tipoFormacion = this.Names.map((item, index) => ({
+          data: item.toString(),
+          dataId: this.Ids[index]
+        }));
+        console.log(this.tipoFormacion);
+
+      }, error => {
+        this.notificationService.showNotification({ message: 'Error de conexión' });
+      });
+  }
+
+  getEstadoGrupo() {
+    this._estadoGrupo.traerEstadoGrupos()
+      .subscribe((estadoGrupo: EstadoGrupoModel[]) => {
+        this.estados = estadoGrupo;
+        this.Names = this.estados.map(estado => estado.nombreEstado)
+        this.Ids = this.estados.map(estado => estado.id || "")
+
+        this.estado = this.Names.map((item, index) => ({
+          data: item.toString(),
+          dataId: this.Ids[index]
+        }));
+        console.log(this.tipoFormacion);
+
+      }, error => {
+        this.notificationService.showNotification({ message: 'Error de conexión' });
+      });
+  }
+
+  getTipoOferta() {
+    this._tipoOferta.traerTipoOfertas()
+      .subscribe((tipoOferta: TipoOfertaModel[]) => {
+        this.tipoOfertas = tipoOferta;
+        this.Names = this.tipoOfertas.map(tipoOferta => tipoOferta.nombreOferta)
+        this.Ids = this.tipoOfertas.map(tipoOferta => tipoOferta.id || "")
+
+        this.tipoOferta = this.Names.map((item, index) => ({
+          data: item.toString(),
+          dataId: this.Ids[index]
+        }));
+        console.log(this.tipoFormacion);
 
       }, error => {
         this.notificationService.showNotification({ message: 'Error de conexión' });
