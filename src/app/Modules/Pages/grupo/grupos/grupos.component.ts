@@ -43,7 +43,6 @@ import { TipoOfertaService } from '@services/tipo-oferta.service';
   styleUrls: ['./grupos.component.css'],
 })
 export class GruposComponent implements OnInit {
-
   tipoGrupos: TipoGrupoModel[] = [];
 
   tipoGrupo: any;
@@ -67,7 +66,6 @@ export class GruposComponent implements OnInit {
   tipoOfertas: TipoOfertaModel[] = [];
 
   tipoOferta: any[] = [];
-
 
   Names: string[] = [];
 
@@ -103,8 +101,7 @@ export class GruposComponent implements OnInit {
     private _tipoGrupoService: TipoGrupoService,
     private _tipoFormacionService: TipoFormacionService,
     private _estadoGrupo: EstadoGrupoService,
-    private _tipoOferta: TipoOfertaService,
-
+    private _tipoOferta: TipoOfertaService
   ) {}
 
   ngOnInit(): void {
@@ -131,73 +128,73 @@ export class GruposComponent implements OnInit {
   }
 
   openModalCreate1() {
-
     this.filler = [
       {
-
-        fieldName: "Nombrasdassde",
-        uppercase: true,
-
-      },
-      {
-        fieldName: "Codigo",
-        placeholder: "qweqewq"
-
-      },
-      {
-        fieldName: "Programa",
-        type: "select",
+        fieldName: 'Programa',
+        type: 'select',
         data: this.programa,
       },
       {
-        fieldName: "Nivel de formación",
-        type: "select",
+        fieldName: 'Numero de ficha',
+        placeholder: 'número de ficha',
+        uppercase: true,
+      },
+      {
+        fieldName: 'Infraestruturas',
+        placeholder: 'infraestructuras',
+      },
+      {
+        fieldName: 'Nivel de formación',
+        type: 'select',
         data: this.nivelFormacion,
-
-
       },
       {
-        fieldName: "TipoGrupo",
-        type: "select",
-        data: this.tipoGrupo,
+        fieldName: 'Tipo de formación',
+        type: 'select',
+        data: this.tipoFormacion,
       },
       {
-        fieldName: "Tipo de oferta",
-        type: "select",
+        fieldName: 'Tipo de estado',
+        type: 'select',
+        data: this.estado,
+      },
+      {
+        fieldName: 'Tipo de oferta',
+        placeholder: 'Tipo de oferta',
+        type: 'select',
         data: this.tipoOferta,
       },
       {
-        fieldName: "Numero de raps",
-
-
+        fieldName: 'Fecha inicial lectiva',
+        placeholder: 'fecha inicial',
+        uppercase: true,
       },
       {
-        fieldName: "Centro de formación",
-
+        fieldName: 'Fecha final lectiva',
+        placeholder: 'fecha final',
+        uppercase: true,
       },
       {
-        fieldName: "Campo que quiero",
-        placeholder: "Place holder",
-        uppercase: true
-      }
+        fieldName: 'Observación',
+        placeholder: 'Observación',
+        uppercase: true,
+      },
+    ];
 
-    ]
-
-    var pass = { filler: this.filler, title: "Agregar ficha" }
-    const dialogRef: MatDialogRef<ExtendModalComponent> = this.dialog.open(ExtendModalComponent, { data: pass });
+    var pass = { filler: this.filler, title: 'Agregar ficha' };
+    const dialogRef: MatDialogRef<ExtendModalComponent> = this.dialog.open(
+      ExtendModalComponent,
+      { data: pass }
+    );
     this.grupo = {} as GrupoModel;
-    console.log("filler de abajo en boton", pass);
-    dialogRef.afterClosed().subscribe(data => {
-
-      let grupo: GrupoModel
-      console.log("Dialog output:", data);
+    console.log('filler de abajo en boton', pass);
+    dialogRef.afterClosed().subscribe((data) => {
+      let grupo: GrupoModel;
+      console.log('Dialog output:', data);
     });
-
   }
 
   openModalUpdate1(grupo: GrupoModel) {
-
-
     var dataPlacer: any = [
       grupo.nombre,
       grupo.fechaInicialGrupo,
@@ -215,8 +212,6 @@ export class GruposComponent implements OnInit {
       grupo.participantes,
     ];
 
-
-
     console.log('update', this.filler);
     var pass = { filler: this.filler, title: 'Agregar ficha', update: true };
     const dialogRef: MatDialogRef<ExtendModalComponent> = this.dialog.open(
@@ -233,13 +228,15 @@ export class GruposComponent implements OnInit {
   }
 
   getGrupo() {
-    this._grupoService.traerGrupos()
-      .subscribe(grupo => {
+    this._grupoService.traerGrupos().subscribe(
+      (grupo) => {
         this.grupos = grupo;
-      }, error => {
-        console.log(error)
+      },
+      (error) => {
+        console.log(error);
         // this.notificationService.showNotification(this.options);
-      });
+      }
+    );
   }
 
   deleteGrupo(grupoId: number) {
@@ -255,137 +252,156 @@ export class GruposComponent implements OnInit {
 
   filler: ExtendModalFiller[] = [];
 
-
   getTipoGrupo() {
-    this._tipoGrupoService.traerTipoGrupos()
-      .subscribe((tipoGrupo: TipoGrupoModel[]) => {
+    this._tipoGrupoService.traerTipoGrupos().subscribe(
+      (tipoGrupo: TipoGrupoModel[]) => {
         this.tipoGrupos = tipoGrupo;
-        this.Names = this.tipoGrupos.map(tipoGrupo => tipoGrupo.nombreTipoGrupo)
-        this.Ids = this.tipoGrupos.map(tipoGrupo => tipoGrupo.id || "")
+        this.Names = this.tipoGrupos.map(
+          (tipoGrupo) => tipoGrupo.nombreTipoGrupo
+        );
+        this.Ids = this.tipoGrupos.map((tipoGrupo) => tipoGrupo.id || '');
 
         this.tipoGrupo = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.tipoGrupo);
 
-        console.log("filler de abajo", this.filler);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+        console.log('filler de abajo', this.filler);
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
 
   getPrograma() {
-    this._programaService.traerProgramas()
-      .subscribe((programa: ProgramaModel[]) => {
+    this._programaService.traerProgramas().subscribe(
+      (programa: ProgramaModel[]) => {
         this.programas = programa;
-        this.Names = this.programas.map(programa => programa.nombrePrograma)
-        this.Ids = this.programas.map(programa => programa.id || "")
+        this.Names = this.programas.map((programa) => programa.nombrePrograma);
+        this.Ids = this.programas.map((programa) => programa.id || '');
 
         this.programa = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.programa);
 
-        console.log("filler de abajo", this.filler);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+        console.log('filler de abajo', this.filler);
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
 
   getNivelFormacion() {
-    this._nivelFormacion.traerNivelesFormacion()
-      .subscribe((nivel: NivelFormacionModel[]) => {
+    this._nivelFormacion.traerNivelesFormacion().subscribe(
+      (nivel: NivelFormacionModel[]) => {
         this.niveles = nivel;
-        this.Names = this.niveles.map(nivel => nivel.nivel)
-        this.Ids = this.niveles.map(nivel => nivel.id || "")
+        this.Names = this.niveles.map((nivel) => nivel.nivel);
+        this.Ids = this.niveles.map((nivel) => nivel.id || '');
 
         this.nivelFormacion = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.nivelFormacion);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
 
   getTipoFormacion() {
-    this._tipoFormacionService.traerTipoFormaciones()
-      .subscribe((tipoFormacion: TipoFormacionModel[]) => {
+    this._tipoFormacionService.traerTipoFormaciones().subscribe(
+      (tipoFormacion: TipoFormacionModel[]) => {
         this.tipoFormaciones = tipoFormacion;
-        this.Names = this.tipoFormaciones.map(tipoFormacion => tipoFormacion.nombreTipoFormacion)
-        this.Ids = this.tipoFormaciones.map(tipoFormacion => tipoFormacion.id || "")
+        this.Names = this.tipoFormaciones.map(
+          (tipoFormacion) => tipoFormacion.nombreTipoFormacion
+        );
+        this.Ids = this.tipoFormaciones.map(
+          (tipoFormacion) => tipoFormacion.id || ''
+        );
 
         this.tipoFormacion = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.tipoFormacion);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
 
   getEstadoGrupo() {
-    this._estadoGrupo.traerEstadoGrupos()
-      .subscribe((estadoGrupo: EstadoGrupoModel[]) => {
+    this._estadoGrupo.traerEstadoGrupos().subscribe(
+      (estadoGrupo: EstadoGrupoModel[]) => {
         this.estados = estadoGrupo;
-        this.Names = this.estados.map(estado => estado.nombreEstado)
-        this.Ids = this.estados.map(estado => estado.id || "")
+        this.Names = this.estados.map((estado) => estado.nombreEstado);
+        this.Ids = this.estados.map((estado) => estado.id || '');
 
         this.estado = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.tipoFormacion);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
 
   getTipoOferta() {
-    this._tipoOferta.traerTipoOfertas()
-      .subscribe((tipoOferta: TipoOfertaModel[]) => {
+    this._tipoOferta.traerTipoOfertas().subscribe(
+      (tipoOferta: TipoOfertaModel[]) => {
         this.tipoOfertas = tipoOferta;
-        this.Names = this.tipoOfertas.map(tipoOferta => tipoOferta.nombreOferta)
-        this.Ids = this.tipoOfertas.map(tipoOferta => tipoOferta.id || "")
+        this.Names = this.tipoOfertas.map(
+          (tipoOferta) => tipoOferta.nombreOferta
+        );
+        this.Ids = this.tipoOfertas.map((tipoOferta) => tipoOferta.id || '');
 
         this.tipoOferta = this.Names.map((item, index) => ({
           data: item.toString(),
-          dataId: this.Ids[index]
+          dataId: this.Ids[index],
         }));
         console.log(this.tipoFormacion);
-
-      }, error => {
-        this.notificationService.showNotification({ message: 'Error de conexión' });
-      });
+      },
+      (error) => {
+        this.notificationService.showNotification({
+          message: 'Error de conexión',
+        });
+      }
+    );
   }
-
 
   guardarGrupo(grupo: GrupoModel) {
     if (grupo.id) {
-      this._grupoService.actualizarGrupo(grupo).subscribe(proyecto => {
+      this._grupoService.actualizarGrupo(grupo).subscribe((proyecto) => {
         this.getGrupo();
         this.reset();
       });
     } else {
-      this._grupoService.crearGrupo(grupo).subscribe(proyecto => {
+      this._grupoService.crearGrupo(grupo).subscribe((proyecto) => {
         this.getGrupo();
         this.reset();
         console.log('llega asi', proyecto);
-      })
+      });
     }
   }
-
-
-
-
-
 }
