@@ -6,14 +6,14 @@
 <div class="slider" class="card-training-program">
   <div class="training-program" *ngFor="let grupo of grupos">
       <div class="active-tokens">
-          <p>56</p>
-          <p>Fichas activas</p>
+          <p>{{ grupo.tipo_grupo?.nombreTipoGrupo }}</p>
+          <p>{{grupo.nombre}}</p>
       </div>
       <div class="description">
-          <p>Numero de grupo</p>
-          <p>ID {{grupo.id}}</p>
-          <p>{{grupo.nombre}} horas estimadas</p>
-          <p>{{grupo.nombre}} Raps esperados</p>
+          <p>Información</p>
+          <!-- <p>ID {{grupo.id}}</p> -->
+          <p>Fecha inicial: {{grupo.fechaInicialGrupo}}</p>
+          <p>Fecha final: {{grupo.fechaFinalGrupo}}</p>
       </div>
       <div class="actions">
           <button><img src="../../../assets/icons/reload.svg"></button>

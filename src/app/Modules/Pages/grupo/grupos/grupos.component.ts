@@ -162,6 +162,11 @@ export class GruposComponent implements OnInit {
         data: this.tipoGrupo,
       },
       {
+        fieldName: "Tipo de oferta",
+        type: "select",
+        data: this.tipoOferta,
+      },
+      {
         fieldName: "Numero de raps",
 
 
